@@ -1,0 +1,13 @@
+<h1>TodoList:</h1>
+
+<div>Todo:
+    <input placeholder="enter todo" #newItem [value]="item" type="text">
+    <button (click)="onButtonClick(newItem.value)">Add</button>
+</div> 
+
+<hr>
+
+<li *ngFor="let item of Items"> 
+    <input (click)="onCheck(item.value)" type="checkbox"> {{item}} <button>X</button>
+    <div>Date Created:      Date Completed:</div>
+</li>
