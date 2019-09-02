@@ -15,7 +15,6 @@ export class TodoListComponent implements OnInit {
   Items: string[] = []
 
 
-
   @Input() item: string;
 
   @Output() newItemEvent = new EventEmitter<string>();
@@ -26,7 +25,11 @@ export class TodoListComponent implements OnInit {
 
   onButtonClick(value: string){
     this.Items.push(value);
+    // const CurrentDate: Date = new Date();
+
   }
+
+  // CurrentDate: Date = new Date();
 
   onCheck(){
     
