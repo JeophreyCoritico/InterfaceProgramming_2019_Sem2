@@ -10,18 +10,39 @@ export class BoardComponent implements OnInit {
   squares: any[];
   xIsNext: boolean;
   winner: string;
+  round: number;
+  roundLimit: number;
+  hide: boolean;
+  xScore: number = 0;
+  oScore: number = 0;
 
-  constructor() { }
+  constructor() { 
+    
+  }
+
+  HiddenStyles: {};
+  setHiddenStyles() {
+    this.hide = true;
+    // this.HiddenStyles = {
+    //   'style.visibility': this.hide ? 'visible' : 'hidden'
+    // };
+  }
 
   ngOnInit() {
-    this.newGame();
+    this.round = 0;
+    this.roundLimit = null;
+    this.setHiddenStyles();
+    document.getElementById('finish').style.visibility = 'hidden';
+    // document.getElementById('currentPlayer').style.visibility = 'hidden';
+    // document.getElementById('currentRound').style.visibility = 'hidden';
   }
 
   // setting up game
-  newGame(){
+  newGame() {
     this.squares = Array(9).fill(null);
     this.winner = null;
     this.xIsNext = true
+    this.round++;
   }
 
   // setting the player to O or X
@@ -30,7 +51,7 @@ export class BoardComponent implements OnInit {
   }
 
   // when user clicks on button to make a move
-  makeMove(idx: number){
+  makeMove(idx: number) {
     if (!this.squares[idx]) {
       //check the index of the array that is clicked
       //if square already clicked do nothing 
@@ -40,10 +61,18 @@ export class BoardComponent implements OnInit {
       this.xIsNext = !this.xIsNext;
     }
     this.winner = this.calculateWinner();
+    if (this.winner == 'X'){
+      this.xScore++
+    }
+    else if(this.winner == 'O'){
+      this.oScore++
+    }
+    console.log(this.xScore);
+    console.log(this.oScore);
   }
 
   //determining if user has won the game
-  calculateWinner(){
+  calculateWinner() {
     const lines = [
       //horizontal wins
       [0, 1, 2],
@@ -57,16 +86,32 @@ export class BoardComponent implements OnInit {
       [0, 4, 8],
       [2, 4, 6]
     ];
-    for (let i = 0; i < lines.length; i++){
+    for (let i = 0; i < lines.length; i++) {
       const [a, b, c] = lines[i];
       if (
         this.squares[a] &&
         this.squares[a] === this.squares[b] &&
         this.squares[a] === this.squares[c]
-      ){
+      ) {
         return this.squares[a];
       }
     }
     return null
+  }
+
+  setRounds() {
+    console.log(this.roundLimit)
+    //this.roundLimit = parseInt((<HTMLInputElement>document.getElementById('currentPlayer')).value);
+    this.newGame();
+    this.hide = false;
+    // document.getElementById('currentRound').style.visibility = 'visible';
+    // document.getElementById('inputVal').style.visibility = 'hidden';
+    // document.getElementById('btnSet').style.visibility = 'hidden';
+  }
+
+  roundCheck() {
+    if (this.round > this.roundLimit) {
+      document.getElementById('finish').style.visibility = 'visible';
+    }
   }
 }

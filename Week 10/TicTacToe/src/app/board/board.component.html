@@ -1,14 +1,22 @@
-<h1>Current Player: {{ player }}</h1>
+<input [style.visibility]="hide ? 'visible' : 'hidden'" placeholder="Enter round(s)" [(ngModel)]="roundLimit" type="number">
+<button [style.visibility]="hide ? 'visible' : 'hidden'" (click)="setRounds(roundLimit)">Set</button>
 
-<button (click)="newGame()">Start New Game</button>
+<h1 [style.visibility]="hide ? 'hidden' : 'visible'">Current Player: {{ player }}</h1>
 
-<h2 *ngIf="winner">
-Player {{winner}} won the game!
-</h2>
+<!-- <button (click)="newGame()">Start New Game</button> -->
+
+<h1 [style.visibility]="hide ? 'hidden' : 'visible'">Round: {{ round }} out of {{roundLimit}}</h1>
+<h2 [style.visibility]="hide ? 'hidden' : 'visible'">Player X Score: {{xScore}}</h2>
+<h2 [style.visibility]="hide ? 'hidden' : 'visible'">Player O Score: {{oScore}}</h2>
 
 <main>
-    <app-sqaure *ngFor="let val of squares; let i = index" 
-    [value]="val"
-    (click)="makeMove(i)">
+    <app-sqaure *ngFor="let val of squares; let i = index" [value]="val" (click)="makeMove(i)">
     </app-sqaure>
 </main>
+
+<h2 *ngIf="winner">
+    Player {{winner}} won the round!
+    <button (click)="newGame(); roundCheck();">Next Round</button>
+</h2>
+
+<h1 id="finish">FINISH</h1>

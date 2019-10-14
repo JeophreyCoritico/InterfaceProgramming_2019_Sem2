@@ -5,6 +5,8 @@ import { AppComponent } from './app.component';
 import { SqaureComponent } from './sqaure/sqaure.component';
 import { BoardComponent } from './board/board.component';
 
+import { FormsModule } from '@angular/forms';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -12,7 +14,8 @@ import { BoardComponent } from './board/board.component';
     BoardComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
