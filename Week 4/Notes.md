@@ -1,4 +1,4 @@
-# npm install -g @anguler/cli
+# npm install -g @angular/cli
 # ng new AppName
 # ng serve 
 # npm install --save-dev @angular-devkit/build-angular
