@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { PlanetsServiceService } from '../planets-service.service';
-import { planet } from './planets';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { planet } from '../planets';
+import { PLANETS } from '../mock-planets';
 
 @Component({
   selector: 'app-planets-detail',
@@ -9,13 +9,19 @@ import { planet } from './planets';
 })
 export class PlanetsDetailComponent implements OnInit {
 
-  constructor(private planetSERVICE: PlanetsServiceService) { }
+@Input() Planet: planet;
 
-  addPlanet(): void {
-    this.planet = this.planetSERVICE.addPlanet();
-  }
+@Output() onPlanetDelete : EventEmitter<void> = new EventEmitter<void>();
+
+  constructor() { }
 
   ngOnInit() {
   }
+
+  deletePlanet(){
+    this.onPlanetDelete.emit();
+  }
+  
+
 
 }

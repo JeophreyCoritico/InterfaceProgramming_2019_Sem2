@@ -8,6 +8,7 @@ import { PlanetsServiceService } from '../planets-service.service';
   styleUrls: ['./planets-list.component.css']
 })
 export class PlanetsListComponent implements OnInit {
+  planets: planet[];
 
   service: PlanetsServiceService
 
@@ -17,4 +18,7 @@ export class PlanetsListComponent implements OnInit {
   ngOnInit() {
   }
 
+  deletePlanted(Planet: planet){
+    this.service.DeletePlanet(Planet)
+  }
 }

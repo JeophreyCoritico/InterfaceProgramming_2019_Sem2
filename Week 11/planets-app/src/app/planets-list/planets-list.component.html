@@ -1,5 +1,5 @@
-<div>
-    <li>
-
+<ul>
+    <li *ngFor="let planet of service.PLANETS">
+        <app-planets-detail [Planet]="planet" (onPlanetDelete)="deletePlanted(planet)"></app-planets-detail>
     </li>
-</div>
+</ul>

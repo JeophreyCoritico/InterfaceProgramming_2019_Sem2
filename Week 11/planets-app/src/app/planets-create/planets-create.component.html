@@ -1,1 +1,6 @@
-<input [(ngModel)] = "planetName" type = string>
+<input [(ngModel)]="PlanetName" type='text' placeholder="Name">
+<input [(ngModel)]="PlanetMoons" type='text' placeholder="Moons">
+<input [(ngModel)]="PlanetDistance" type='text' placeholder="Distance">
+
+<button (click)="onAddPlanetClick()">Create</button>
+<button (click)="onSortPlanetClick()">Sort by distance from sun</button>
